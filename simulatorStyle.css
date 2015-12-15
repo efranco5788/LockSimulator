@@ -43,13 +43,6 @@
 	height: 55%;
 }
 
-.keypadRow{
-		margin-left: auto;
-    margin-right: auto;
-	width: 100%;
-	height: 10%;
-}
-
 #firstKeypadRow{
 	text-align:center;
 margin:auto;

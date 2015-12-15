@@ -149,6 +149,7 @@ var simulatorJS = (function () {
 					{
 					    currentMenu["submenuCount"] = field;
 						currentMenu["initialSubmenuSet"] = false;
+						currentMenu["index"] = count;
 					    totalMenus[count] = currentMenu;
 					    count++;
 					    currentMenu = {};	
@@ -174,9 +175,20 @@ var simulatorJS = (function () {
 			
 			jQuery.each(fields, function(i, field){
 				
+				name = $(field).attr('name');
+				
 				field.value = field.value.trim();
 				submenus[i] = field.value;
+				
+				if(name == "submenuName")
+				{
 					
+				}
+				else(name == "submenuCount")
+				{
+					
+				}
+				
 			}); // End of foreach loop
 					
 				currentMenu["initialSubmenuSet"] = true;
@@ -334,7 +346,14 @@ var simulatorJS = (function () {
                         menuForm.append('</label>');
                         menuForm.append('<input required name="submenuName" ' + 'type="text" id=' + input_SubNameID_Element + ">");
                         menuForm.append('</input>');
-                        menuForm.append('</p>');
+						menuForm.append('<br>');
+                        menuForm.append('<label class="submenuCountOption">');
+                        menuForm.append('Number of Submenus: ');
+                        menuForm.append('</label>');
+                        menuForm.append('<input required name="submenuCount" ' + 'type="number" min="1" max="10">');
+                        menuForm.append('<br>');
+                        
+						menuForm.append('</p>');
 						
 					}
 					

@@ -2,8 +2,8 @@
 <html>
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Untitled Document</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+<title>Lock Simulator</title>
 <link rel="stylesheet" href="simulatorStyle.css" type="text/css">
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
@@ -11,7 +11,7 @@
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 </head>
 <body>
-<div class="container-fluid">
+<div class="container">
 
 <table class="col-md-12" id="mainTable">
   <tr>
@@ -20,39 +20,39 @@
     <textarea readonly class="simulatorTextArea" id="simulatorTextDisplay"></textarea>
 <div id="numKeypad">
 
-<div class="keypadRow" id="firstKeypadRow">
+<div id="firstKeypadRow">
 <button class="keys" id="key_1" type="button" onClick="simulatorJS.buttonClicked(this)">1</button>
 <button class="keys" id="key_2" type="button" onClick="simulatorJS.buttonClicked(this)">2</button>
 <button class="keys" id="key_3" type="button" onClick="simulatorJS.buttonClicked(this)">3</button>
 </div>
-<div class="keypadRow" id="secondKeypadRow">
+
+<div id="secondKeypadRow">
 <button class="keys" id="key_4" type="button" onClick="simulatorJS.buttonClicked(this)">4</button>
 <button class="keys" id="key_5" type="button" onClick="simulatorJS.buttonClicked(this)">5</button>
 <button class="keys" id="key_6" type="button" onClick="simulatorJS.buttonClicked(this)">6</button>
 </div>
-<div class="keypadRow" id="thirdKeypadRow">
+
+<div id="thirdKeypadRow">
 <button class="keys" id="key_7" type="button" onClick="simulatorJS.buttonClicked(this)">7</button>
 <button class="keys" id="key_8" type="button" onClick="simulatorJS.buttonClicked(this)">8</button>
 <button class="keys" id="key_9" type="button" onClick="simulatorJS.buttonClicked(this)">9</button>
 </div>
-<div class="keypadRow" id="fourthKeypadRow">
+
+<div id="fourthKeypadRow">
 <button class="keys" id="key_back" type="button" onClick="simulatorJS.buttonClicked(this)">back</button>
 <button class="keys" id="key_0" type="button" onClick="simulatorJS.buttonClicked(this)">0</button>
 <button class="keys" id="key_enter" type="button" onClick="simulatorJS.buttonClicked(this)">enter</button>
 </div>
 
 </div>
-<!--
-<div id="simulatorSettingButtons">
-<button class="settingButtons" id="buttonRest" type="button" onClick="simulatorJS.clear()">Clear</button>
-</div>
---->
+
 </div>
 
 </td>
 
 <td id="menuColumn">
-<form id="menuOptionDescriptions" onSubmit="return simulatorJS.submitMenusWithSubmenus()"> </form>
+<form id="menuOptionDescriptions" onSubmit="return simulatorJS.submitMenusWithSubmenus()"> 
+</form>
 
 </td>
 </tr>
@@ -63,6 +63,7 @@
 $(document).ready(function(){
 	
 	var simJS = simulatorJS;
+	
 	var totalMenuCount = simJS.getTotalMenus();
 
 	if(totalMenuCount < 1)
