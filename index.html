@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Untitled Document</title>
 <link rel="stylesheet" href="simulatorStyle.css" type="text/css">
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
@@ -11,7 +11,7 @@
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 </head>
 <body>
-<div class="container">
+<div class="container-fluid">
 
 <table class="col-md-12" id="mainTable">
   <tr>
@@ -20,22 +20,22 @@
     <textarea readonly class="simulatorTextArea" id="simulatorTextDisplay"></textarea>
 <div id="numKeypad">
 
-<div id="firstKeypadRow">
+<div class="keypadRow" id="firstKeypadRow">
 <button class="keys" id="key_1" type="button" onClick="simulatorJS.buttonClicked(this)">1</button>
 <button class="keys" id="key_2" type="button" onClick="simulatorJS.buttonClicked(this)">2</button>
 <button class="keys" id="key_3" type="button" onClick="simulatorJS.buttonClicked(this)">3</button>
 </div>
-<div id="secondKeypadRow">
+<div class="keypadRow" id="secondKeypadRow">
 <button class="keys" id="key_4" type="button" onClick="simulatorJS.buttonClicked(this)">4</button>
 <button class="keys" id="key_5" type="button" onClick="simulatorJS.buttonClicked(this)">5</button>
 <button class="keys" id="key_6" type="button" onClick="simulatorJS.buttonClicked(this)">6</button>
 </div>
-<div id="thirdKeypadRow">
+<div class="keypadRow" id="thirdKeypadRow">
 <button class="keys" id="key_7" type="button" onClick="simulatorJS.buttonClicked(this)">7</button>
 <button class="keys" id="key_8" type="button" onClick="simulatorJS.buttonClicked(this)">8</button>
 <button class="keys" id="key_9" type="button" onClick="simulatorJS.buttonClicked(this)">9</button>
 </div>
-<div id="fourthKeypadRow">
+<div class="keypadRow" id="fourthKeypadRow">
 <button class="keys" id="key_back" type="button" onClick="simulatorJS.buttonClicked(this)">back</button>
 <button class="keys" id="key_0" type="button" onClick="simulatorJS.buttonClicked(this)">0</button>
 <button class="keys" id="key_enter" type="button" onClick="simulatorJS.buttonClicked(this)">enter</button>
