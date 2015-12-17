@@ -8,6 +8,7 @@
 	border-radius: 18%;
 	border-width:thin;
 	border-style:solid;
+	background-color:#000000;
 }
 
 .tableColumn{
@@ -46,37 +47,36 @@
 #firstKeypadRow{
 	text-align:center;
 margin:auto;
-padding-top:10%;
+
 }
 
 #secondKeypadRow{
 	text-align:center;
+	padding-top:5%;
 margin:auto;
-padding-top:10%;
+
 }
 
 #thirdKeypadRow{
 	text-align:center;
+	padding-top:5%;
 margin:auto;
-padding-top:10%;
+
 }
 
 #fourthKeypadRow{
-	padding-top:10%;
-		text-align:center;
-margin:auto;
+	text-align:center;
+    margin:auto;
 }
 
 #key_back{
 	text-align: center;
-	left: 366px;
-	top: 451px;
+
 }
 
 #key_enter{
 	text-align: center;
-	left: 366px;
-	top: 451px;
+
 }
 
 #simulatorSettingButtons{
@@ -105,5 +105,10 @@ margin:auto;
 }
 
 .keys{
+	background-color: Transparent;
+	border:hidden;
 	padding: 20px 35px;
+	font-family: verdana;
+    font-size: 200%;
+	color:#5f8aff;
 }
