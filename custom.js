@@ -207,9 +207,12 @@ var simulatorJS = (function () {
 			
 			
 			drawMenus: function () {
+			
 			var area = document.getElementById("simulatorTextDisplay");
+			
 			var menuText = '';
 			
+			menuText = menuText + ("\t\t\t\t" + 'Main Menu' + "\n");
 			
 			jQuery.each(totalMenus, function(i, menu){
 				var menuNumber = (i + 1);
