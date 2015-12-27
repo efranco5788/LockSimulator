@@ -3,6 +3,7 @@ var simulatorJS = (function () {
     var totalMenus = [];
 	var mainMenuIsSetup = false;
 	var mainMenuDisplayed = false;
+	var submenuDisplayed = false;
 	var buttonsPressed = [];
 	var submenu_Key = "submenus";
 	
@@ -24,6 +25,7 @@ var simulatorJS = (function () {
 			totalMenus = [];
 			mainMenuIsSetup = false;
 			mainMenuDisplayed = false;
+			submenuDisplayed = false;
 			location.reload(true); 
 		},
 		
@@ -36,7 +38,8 @@ var simulatorJS = (function () {
 				
 				var userInput = null;
 				
-				while(userInput == null) //Check if user did not enter a number
+				//Check if user entered a number
+				while(userInput == null)
 				{
 					userInput = prompt("Please enter a positive whole number for your total number of menu options.", "1");
 				}
@@ -128,7 +131,7 @@ var simulatorJS = (function () {
 		
 		
 		
-		
+		// Function populates each main menu with its properties
 		submitMenusWithSubmenus: function () {
 			
 			    var fields = $(":input").serializeArray();
@@ -166,15 +169,18 @@ var simulatorJS = (function () {
 			 
 			 
 			 
-			 
+		// Function creates the properties for each submenu	 
 		submitSubmenusForMenu: function(menuNum) {
 			
-			var currentMenu = totalMenus[menuNum];
 			var fields = $(":input").serializeArray();
+			var currentMenu = totalMenus[menuNum];
+			var currentSubmenu = {};
 			var submenus = {};
+			var count = 0;
 			
 			jQuery.each(fields, function(i, field){
 				
+				// Get name of html tag
 				name = $(field).attr('name');
 				
 				field.value = field.value.trim();
@@ -182,11 +188,15 @@ var simulatorJS = (function () {
 				
 				if(name == "submenuName")
 				{
-					
+					currentSubmenu["name"] = field.value;
 				}
-				else(name == "submenuCount")
+				else if(name == "submenuCount")
 				{
-					
+					currentSubmenu["submenuCount"] = field.value;
+					currentSubmenu["index"] = count;
+					submenus[count] = currentSubmenu;
+					count++;
+					currentSubmenu = {};
 				}
 				
 			}); // End of foreach loop
@@ -197,7 +207,6 @@ var simulatorJS = (function () {
 				var submenuCount = parseInt(currentMenu["submenuCount"].value);
 				
 				this.drawSubmenus(submenuCount, currentMenu);
-				
 				return false;
 			
 			 },			 
@@ -221,7 +230,10 @@ var simulatorJS = (function () {
 			
 			area.value = menuText;
 			mainMenuDisplayed = true;
+			submenuDisplayed = false;
 			},
+			
+			
 			
 			
 			
@@ -234,12 +246,14 @@ var simulatorJS = (function () {
 					$(area).val('');
 					
 					var submenus = menuObject["submenus"];
+					
 					if(submenus !== undefined)
 					{
 						for(var count = 0; count < totalSubMenus; count++)
 						{
 							var submenuNumber = (count + 1);
-							var submenuName = submenus[count];
+							var currentSubmenu = submenus[count];
+							var submenuName = currentSubmenu['name'];
 							menuText = menuText + (submenuNumber + '. ' + submenuName + "\n");
 						}
 						
@@ -258,15 +272,15 @@ var simulatorJS = (function () {
 					
 
 					//area.value = menuText;
-					menuObject["initialSubmenuSet"] = true;	
+					menuObject["initialSubmenuSet"] = true;
 					mainMenuDisplayed = false;
+					submenuDisplayed = true;
 			},
 			
 			
 			
 			
-			
-			
+				
 			buttonClicked: function (btn) {
 				
 				if(mainMenuIsSetup){
@@ -275,7 +289,8 @@ var simulatorJS = (function () {
 					
 					if(btnClicked == "enter")
 					{
-						if(mainMenuDisplayed == true) // If main menu is being displayed
+						// If main menu is being displayed
+						if(mainMenuDisplayed == true)
 						{
 							if(buttonsPressed.length >= 1)
 							{
@@ -296,21 +311,42 @@ var simulatorJS = (function () {
 								
 							}
 							
-							buttonsPressed = []; //clear buttons pressed history
 						}
-						else{
-							buttonsPressed = []; // clear buttons pressed history
+						else if(submenuDisplayed == true){
+							
+							if(buttonsPressed.length >= 1)
+							{
+								var buttonOption = '';
+								var buttonValue = -1;
+								
+								jQuery.each(buttonsPressed, function(i, button){
+									buttonOption = buttonOption + button;
+								});
+								
+								buttonValue = parseInt(buttonOption);
+								
+								if(buttonValue <= totalMenus.length)
+								{
+									var menu = (buttonValue - 1);
+									
+								}
+								
+							}
+							
 						}
+						
+						//clear buttons pressed history
+						buttonsPressed = [];
 					}
 					else if(btnClicked == "back")
 					{
 						this.redrawMenu();
-						buttonsPressed = [];
 					}
 					else
 					{
 						buttonsPressed.push(btnClicked);
 					}
+				
 					
 				} // end of if main menu is setup statement
 				else{
@@ -428,7 +464,7 @@ var simulatorJS = (function () {
 					
 					
 					
-			redrawSubmenuForm: function(totalSubMenus, menuObject){
+			redrawSubmenus: function(submenuIndex){
 				
 					var menuFormColumn = $('#mainTable').find('#menuColumn');
                     var menuForm = menuFormColumn.find('#menuOptionDescriptions');
@@ -456,6 +492,7 @@ var simulatorJS = (function () {
 					}
 					
 					mainMenuDisplayed = false;
+					submenuDisplayed = true;
 					
 			}					
 					
