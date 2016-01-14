@@ -8,33 +8,35 @@ function menu(){
 			
 }
 
+function submenu(){
+	
+	this.name;
+	this.index;
+	this.mainMenuIndex;
+	this.submenuCount;
+	this.submenusCreated;
+	this.submenus;
+	
+}
+
 var simulatorJS = (function () {
     "use strict";
 	var menuTrail = [];
-    var totalMenus = [];
-	var menus = []; //new var to hold menu objects
+	var menus = [];
 	var mainMenuIsSetup = false;
 	var mainMenuDisplayed = false;
 	var submenuDisplayed = false;
 	var buttonsPressed = [];
-	var submenu_Key = "submenus";
 	
     return {
 		
         getTotalMenus: function () {
-			var total = totalMenus.length;
-            return total;
+            return menus.length;
         },
 		
 		
-		setTotalMenus: function (num) {
-			totalMenus.length = num; 
-		},
-		
-		
-		
 		clear: function () {
-			totalMenus = [];
+			menus = [];
 			mainMenuIsSetup = false;
 			mainMenuDisplayed = false;
 			submenuDisplayed = false;
@@ -74,8 +76,7 @@ var simulatorJS = (function () {
                         if (totalNum > 0) {
 
                             if (totalNum % 1 === 0) {
-                                this.setTotalMenus(totalNum);
-                                this.setEachMenuOption(totalMenus.length);
+                                this.setEachMenuOption(totalNum);
                                 isValid = true;
                             } 
 							else {
@@ -149,8 +150,6 @@ var simulatorJS = (function () {
 			    var fields = $(":input").serializeArray();
 			    var name;
 			    var count = 0;
-			    var currentMenu = {};
-				
 				var newMenu;
 			
 			    jQuery.each(fields, function(i, field){
@@ -163,8 +162,6 @@ var simulatorJS = (function () {
 				    {
 						newMenu = new menu();
 						newMenu.name = field.value;
-						
-						currentMenu["name"] = field;
 					}
 				    else if(name == "submenus")
 					{
@@ -173,12 +170,7 @@ var simulatorJS = (function () {
 						newMenu.submenusCreated = false;
 						menus.push(newMenu);
 						
-					    currentMenu["submenuCount"] = field;
-						currentMenu["initialSubmenuSet"] = false;
-						currentMenu["index"] = count;
-					    totalMenus[count] = currentMenu;
-					    count++;
-					    currentMenu = {};	
+						count++
 					}
 					
 					}); // End of foreach loop
@@ -197,9 +189,9 @@ var simulatorJS = (function () {
 		submitSubmenusForMenu: function(menuNum) {
 			
 			var fields = $(":input").serializeArray();
-			var currentMenu = totalMenus[menuNum];
-			var currentSubmenu = {};
-			var submenus = {};
+			var currentMenu = menus[menuNum];
+			var currentSubmenu;
+			var tmpSubmenus = [];
 			var count = 0;
 			
 			jQuery.each(fields, function(i, field){
@@ -208,31 +200,32 @@ var simulatorJS = (function () {
 				name = $(field).attr('name');
 				
 				field.value = field.value.trim();
-				submenus[i] = field.value;
+				//submenus[i] = field.value;
 				
 				if(name == "submenuName")
 				{
-					currentSubmenu["name"] = field.value;
+					currentSubmenu = new submenu();
+					currentSubmenu.name = field.value;
 				}
 				else if(name == "submenuCount")
 				{
-					currentSubmenu["submenuCount"] = field.value;
-					currentSubmenu["index"] = count;
-					currentSubmenu["mainMenuIndex"] = menuNum;
-					submenus[count] = currentSubmenu;
+					currentSubmenu.submenuCount = field.value;
+					currentSubmenu.index = count;
+					currentSubmenu.mainMenuIndex = menuNum;
+					tmpSubmenus.push(currentSubmenu);
 					count++;
-					currentSubmenu = {};
 				}
 				
 			}); // End of foreach loop
 					
-				currentMenu["initialSubmenuSet"] = true;
-				currentMenu["submenus"] = submenus;
+				currentMenu.submenusCreated = true;
+				currentMenu.submenus = tmpSubmenus;
 				
-				var submenuCount = parseInt(currentMenu["submenuCount"].value);
+				//var submenuCount = parseInt(currentMenu["submenuCount"].value);
+				var subCount = parseInt(currentSubmenu.submenuCount);
 			
 				alert("Submenus saved");
-				this.drawSubmenus(submenuCount, currentMenu);
+				this.drawSubmenus(subCount, currentMenu);
 				return false;
 			
 			 },			 
@@ -248,13 +241,6 @@ var simulatorJS = (function () {
 			var menuText = '';
 			
 			menuText = menuText + ("\t\t\t\t" + 'Main Menu' + "\n");
-			
-			/*
-			jQuery.each(totalMenus, function(i, menu){
-				var menuNumber = (i + 1);
-				menuText = menuText + (menuNumber + '. ' + menu.name.value + "\n");
-			});
-			*/
 			
 			for(var count = 0; count < menus.length; count++)
 			{
@@ -280,15 +266,15 @@ var simulatorJS = (function () {
 					
 					$(area).val('');
 					
-					var submenus = menuObject["submenus"];
+					var subs = menuObject.submenus;
 					
-					if(submenus !== undefined)
+					if(subs !== undefined)
 					{
-						for(var count = 0; count < totalSubMenus; count++)
+						for(var count = 0; count < menuObject.submenuCount; count++)
 						{
 							var submenuNumber = (count + 1);
-							var currentSubmenu = submenus[count];
-							var submenuName = currentSubmenu['name'];
+							var currentSubmenu = subs[count];
+							var submenuName = currentSubmenu.name;
 							menuText = menuText + (submenuNumber + '. ' + submenuName + "\n");
 						}
 						
@@ -306,8 +292,7 @@ var simulatorJS = (function () {
 					}
 					
 
-					//area.value = menuText;
-					menuObject["initialSubmenuSet"] = true;
+					menuObject.submenusCreated = true;
 					mainMenuDisplayed = false;
 					submenuDisplayed = true;
 			},
@@ -338,11 +323,11 @@ var simulatorJS = (function () {
 								
 								buttonValue = parseInt(buttonOption);
 								
-								if(buttonValue <= totalMenus.length)// get the value of the menu
+								if(buttonValue <= menus.length)// get the value of the menu
 								{
-									var menu = (buttonValue - 1);
-									menuTrail.push(menu);
-									this.inputSubmenuNamesForMainMenu(menu);
+									var menuValue = (buttonValue - 1);
+									menuTrail.push(menuValue);
+									this.inputSubmenuNamesForMainMenu(menuValue);
 								}
 								
 							}
@@ -356,7 +341,7 @@ var simulatorJS = (function () {
 								var buttonValue = -1;
 								
 								var mainMenuIndex = menuTrail[0];
-								var mainMenu = totalMenus[mainMenuIndex];
+								var mainMenu = menus[mainMenuIndex];
 								var submenu = {};
 								
 								jQuery.each(buttonsPressed, function(i, button){
@@ -367,14 +352,14 @@ var simulatorJS = (function () {
 								
 								if(menuTrail.length == 1)
 								{
-									var subCount = mainMenu["submenuCount"].value;
+									var subCount = mainMenu.submenuCount;
 									
 									if(buttonValue <= subCount)
 									{
-										var submenus = mainMenu["submenus"];
+										var submenus = mainMenu.submenus;
 										var submenuNum = (buttonValue - 1);
-										var submenu = submenus[submenuNum];
-										this.inputSubmenuNamesForSubmenu(submenu);
+										var sub_menu = submenus[submenuNum];
+										this.inputSubmenuNamesForSubmenu(sub_menu);
 									}
 								}
 								else if(menuTrail.length > 1)
@@ -414,9 +399,9 @@ var simulatorJS = (function () {
 					
 					var menuFormColumn = $('#mainTable').find('#menuColumn');
                     var menuForm = menuFormColumn.find('#menuOptionDescriptions');
-					var menuObject = totalMenus[menuNum];
-					var subCount = parseInt(menuObject['submenuCount'].value);
-					var initialSubmenu_Set = menuObject["initialSubmenuSet"];
+					var menuObject = menus[menuNum];
+					var subCount = parseInt(menuObject.submenuCount);
+					var initialSubmenu_Set = menuObject.submenusCreated;
 					
 					$(menuForm).empty();
 					
@@ -459,16 +444,16 @@ var simulatorJS = (function () {
 			
 			
 			
-			inputSubmenuNamesForSubmenu: function(submenu){
+			inputSubmenuNamesForSubmenu: function(sub_menu){
 				
 					var menuFormColumn = $('#mainTable').find('#menuColumn');
                     var menuForm = menuFormColumn.find('#menuOptionDescriptions');
-					var subCount = parseInt(submenu["submenuCount"]);
-					var menuNum = [submenu["index"]];
+					var subCount = parseInt(sub_menu.submenuCount);
+					var menuNum = sub_menu.index;
 					
 					$(menuForm).empty();
 					
-					this.drawSubmenus(subCount, submenu);
+					this.drawSubmenus(subCount, sub_menu);
 					
 					for (var count = 0; count < subCount; count++) {
 						
@@ -517,7 +502,7 @@ var simulatorJS = (function () {
 					
 					$(menuForm).empty(); //Clear out the form first
 					
-					for (var count = 0; count < totalMenus.length; count++) {
+					for (var count = 0; count < menus.length; count++) {
 						
 						menuNum = (count + 1);
 
@@ -527,9 +512,9 @@ var simulatorJS = (function () {
                         var label_SubmenusID_Element = 'submenuLabel_' + menuNum;
                         var input_SubmenusID_Element = 'inputSubmenuCount_' + menuNum;
 						
-						var menuObject = totalMenus[count];
-						var menuObjectName = menuObject['name'].value;
-						var menuObjectSubmenuCount = menuObject['submenuCount'].value;
+						var menuObject = menus[count];
+						var menuObjectName = menuObject.name;
+						var menuObjectSubmenuCount = menuObject.submenuCount;
 						
 						
 						menuForm.append('<p>');
@@ -565,7 +550,7 @@ var simulatorJS = (function () {
 					
 					
 					
-					
+			/*		
 			redrawSubmenus: function(submenuIndex){
 				
 					var menuFormColumn = $('#mainTable').find('#menuColumn');
@@ -597,7 +582,7 @@ var simulatorJS = (function () {
 					submenuDisplayed = true;
 					
 			}					
-					
+			*/		
 					
 					
 		
