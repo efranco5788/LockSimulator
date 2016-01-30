@@ -13,9 +13,10 @@
 <body>
 <div class="container">
 
-<table class="col-md-12" id="mainTable">
+<table id="mainTable">
+<tbody>
   <tr>
-    <td id="simulatorColumn">
+    <td class="col-md-6" id="simulatorColumn">
     <div class="mainSimulatorContainer">
     <textarea readonly class="simulatorTextArea" id="simulatorTextDisplay"></textarea>
 <div id="numKeypad">
@@ -51,12 +52,13 @@
 
 </td>
 
-<td id="menuColumn">
+<td class="col-md-6" id="menuColumn">
 <form id="menuOptionDescriptions" onSubmit="return simulatorJS.submitMenusWithSubmenus()"> 
 </form>
 
 </td>
 </tr>
+</tbody>
 </table>
 
 </div>

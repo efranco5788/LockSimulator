@@ -2,13 +2,25 @@
 /* CSS Document */
 
 .mainSimulatorContainer{
-    position:relative;
-	height: 600px;
+    
+	height: 550px;
 	width: 600px;
 	border-radius: 30%;
 	border-width:thin;
 	border-style:solid;
 	background-color:#000000;
+}
+
+#mainTable{
+	
+	width: 100%;
+	
+}
+
+#simulatorColumn{
+	
+	position:fixed;
+	
 }
 
 .tableColumn{
@@ -17,6 +29,8 @@
 }
 
 #menuColumn{
+	position: relative;
+	left: 10%;
 	padding-left: 5%;
 	padding-right: 5%;
 }
