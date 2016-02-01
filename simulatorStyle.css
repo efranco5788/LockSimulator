@@ -1,31 +1,30 @@
 @charset "utf-8";
 /* CSS Document */
 
-.mainSimulatorContainer{
-    
-	height: 550px;
-	width: 600px;
-	border-radius: 30%;
-	border-width:thin;
-	border-style:solid;
-	background-color:#000000;
+#mainContainer{
+	width: 100%;
+	height: 100%;
 }
 
 #mainTable{
-	
 	width: 100%;
-	
+	height: 100%;
 }
 
 #simulatorColumn{
 	
 	position:fixed;
-	
+	height: 120%;
+	padding-top:1%;
 }
 
-.tableColumn{
-	height: 700px;
-	width: 700px;
+.mainSimulatorContainer{
+	height:80%;
+	width:90%;
+	border-radius: 30%;
+	border-width:thin;
+	border-style:solid;
+	background-color:#000000;
 }
 
 #menuColumn{
@@ -76,8 +75,7 @@ margin:auto;
 #thirdKeypadRow{
 	text-align:center;
 	padding-top:5%;
-margin:auto;
-
+	margin:auto;
 }
 
 #fourthKeypadRow{
@@ -107,7 +105,7 @@ margin:auto;
 }
 
 .submenuBtns{
-		text-align:center;
+	text-align:center;
 	width: 20%;
 	height: 50px;
 	margin: auto;

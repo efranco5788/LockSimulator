@@ -136,10 +136,10 @@ var simulatorJS = (function () {
         }
 
         menuForm.append('<br>');
-        menuForm.append('<button name="submitBtn_1" type="submit"  value="Submit" class="submenuBtns" id="ID_submenuSubmitBtn">Submit');
+        menuForm.append('<button name="submitBtn_1" type="submit"  value="Submit" class="btn btn-default btn-lg" id="ID_submenuSubmitBtn">Submit');
         menuForm.append('</button>');
         menuForm.append('&nbsp;');
-        menuForm.append('<button value="Rest" class="submenuBtns" id="ID_submenuRestBtn" onclick="simulatorJS.clear()">Reset');
+        menuForm.append('<button value="Rest" class="btn btn-default btn-lg" id="ID_submenuRestBtn" onclick="simulatorJS.clear()">Reset');
         menuForm.append('</button>'); 
 		
 		},
@@ -486,7 +486,7 @@ var simulatorJS = (function () {
 					}
 					
 					menuForm.append('<br>');
-                    menuForm.append('<button name="submitBtn_1" type="button" value="Submit" class="submenuBtns" id="ID_submenuSubmitBtn" onclick=' + 'simulatorJS.submitSubmenusForMenu(\'' + menuNum + '\')' + ' >Submit');
+                    menuForm.append('<button name="submitBtn_1" type="button" value="Submit" class="btn btn-default btn-lg" id="ID_submenuSubmitBtn" onclick=' + 'simulatorJS.submitSubmenusForMenu(\'' + menuNum + '\')' + ' >Submit');
                     menuForm.append('</button>');
 					
 					return false;									
@@ -501,6 +501,7 @@ var simulatorJS = (function () {
 					var menuFormColumn = $('#mainTable').find('#menuColumn');
                     var menuForm = menuFormColumn.find('#menuOptionDescriptions');
 					var subCount = parseInt(sub_menu.submenuCount);
+					var menus = sub_menu.submenus;
 					var menuNum = sub_menu.index;
 					
 					$(menuForm).empty();
@@ -513,6 +514,10 @@ var simulatorJS = (function () {
 
                         var label_SubNameID_Element = 'submenuLabel_' + menuNum;
                         var input_SubNameID_Element = 'inputSubmenuName_' + menuNum;
+						
+						var menu = menus[count];
+						var menuObjectName = menu.name;
+						var menuObjectSubmenuCount = menu.submenuCount;
 						
 						menuForm.append('<p>');
                         menuForm.append('<label class="submenuOption" id=' + label_SubNameID_Element + '>');
@@ -534,7 +539,7 @@ var simulatorJS = (function () {
 					}
 					
 					menuForm.append('<br>');
-                    menuForm.append('<button name="submitBtn_1" type="button" value="Submit" class="submenuBtns" id="ID_submenuSubmitBtn" onclick=' + 'simulatorJS.submitSubmenusForMenu(\'' + menuNum + '\')' + ' >Submit');
+                    menuForm.append('<button name="submitBtn_1" type="button" value="Submit" class="btn btn-default btn-lg" id="ID_submenuSubmitBtn" onclick=' + 'simulatorJS.submitSubmenusForMenu(\'' + menuNum + '\')' + ' >Submit');
                     menuForm.append('</button>');
 					
 					return false;					
@@ -589,52 +594,17 @@ var simulatorJS = (function () {
 					}
 					
 					menuForm.append('<br>');
-                    menuForm.append('<button name="submitBtn_1" type="submit"  value="Submit" class="submenuBtns" id="ID_submenuSubmitBtn">Submit');
+                    menuForm.append('<button name="submitBtn_1" type="submit"  value="Submit" class="btn btn-default btn-lg" id="ID_submenuSubmitBtn">Submit');
                     menuForm.append('</button>');
                     menuForm.append('&nbsp;');
-                    menuForm.append('<button value="Rest" class="submenuBtns" id="ID_submenuRestBtn" onclick="simulatorJS.clear()">Reset');
+                    menuForm.append('<button value="Rest" class="btn btn-default btn-lg" id="ID_submenuRestBtn" onclick="simulatorJS.clear()">Reset');
                     menuForm.append('</button>');
 					
 					
 					this.drawMenus();
 					
 			},
-					
-					
-					
-			/*		
-			redrawSubmenus: function(submenuIndex){
-				
-					var menuFormColumn = $('#mainTable').find('#menuColumn');
-                    var menuForm = menuFormColumn.find('#menuOptionDescriptions');
-					
-					$(menuForm).empty();
-					
-					var submenus = menuObject['submenus'];
-					
-					for(var i = 0; i < totalSubMenus; i++)
-					{
-						var subMenuCountDisplay = (count + 1);
-
-                        var label_SubNameID_Element = 'submenuLabel_' + subMenuCountDisplay;
-                        var input_SubNameID_Element = 'inputSubmenuName_' + subMenuCountDisplay;
 						
-						menuForm.append('<p>');
-                        menuForm.append('<label class="submenuOption" id=' + label_SubNameID_Element + '>');
-                        menuForm.append('<strong>' + 'Submenu Option ' + subMenuCountDisplay + ':' + '</strong>');
-                        menuForm.append('<br>');
-                        menuForm.append('Name: ');
-                        menuForm.append('</label>');
-                        menuForm.append('<input required name="submenuName" ' + 'type="text" id=' + input_SubNameID_Element + ">");
-                        menuForm.append('</input>');
-                        menuForm.append('</p>');								
-					}
-					
-					mainMenuDisplayed = false;
-					submenuDisplayed = true;
-					
-			}					
-			*/		
 					
 					
 		
