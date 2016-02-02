@@ -6,21 +6,11 @@
 	height: 100%;
 }
 
-#mainTable{
-	width: 100%;
-	height: 100%;
-}
-
-#simulatorColumn{
-	
-	position:fixed;
-	height: 120%;
-	padding-top:1%;
-}
-
 .mainSimulatorContainer{
+	
 	height:80%;
 	width:90%;
+	
 	border-radius: 30%;
 	border-width:thin;
 	border-style:solid;
@@ -30,6 +20,8 @@
 #menuColumn{
 	position: relative;
 	left: 10%;
+	height:100%;
+	width:50%;
 	padding-left: 5%;
 	padding-right: 5%;
 }
@@ -61,14 +53,13 @@
 
 #firstKeypadRow{
 	text-align:center;
-margin:auto;
-
+	margin:auto;
 }
 
 #secondKeypadRow{
 	text-align:center;
 	padding-top:5%;
-margin:auto;
+	margin:auto;
 
 }
 
@@ -90,18 +81,10 @@ margin:auto;
 
 #key_enter{
 	text-align: center;
-
 }
 
 #simulatorSettingButtons{
 	height:10%;	
-}
-
-.settingButtons{
-	text-align:center;
-	width: 600px;
-	height: 10%;
-	margin: auto;
 }
 
 .submenuBtns{
@@ -122,7 +105,9 @@ margin:auto;
 	background-color: Transparent;
 	border-radius: 30%;
 	border:hidden;
+	
 	padding: 20px 35px;
+	
 	font-family: verdana;
     font-size: 200%;
 	color:#5f8aff;

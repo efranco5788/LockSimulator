@@ -101,7 +101,7 @@ var simulatorJS = (function () {
 		
 		setEachMenuOption: function (num) {
 
-        var menuFormColumn = $('#mainTable').find('#menuColumn');
+        var menuFormColumn = $('#mainContainer').find('#menuColumn');
         var menuForm = menuFormColumn.find('#menuOptionDescriptions');
 
         var menuNum = 0;
@@ -449,7 +449,7 @@ var simulatorJS = (function () {
 				
 			inputSubmenuNamesForMainMenu: function(menuNum){
 					
-					var menuFormColumn = $('#mainTable').find('#menuColumn');
+					var menuFormColumn = $('#mainContainer').find('#menuColumn');
                     var menuForm = menuFormColumn.find('#menuOptionDescriptions');
 					var menuObject = menus[menuNum];
 					var subCount = parseInt(menuObject.submenuCount);
@@ -498,7 +498,7 @@ var simulatorJS = (function () {
 			
 			inputSubmenuNamesForSubmenu: function(sub_menu){
 				
-					var menuFormColumn = $('#mainTable').find('#menuColumn');
+					var menuFormColumn = $('#mainContainer').find('#menuColumn');
                     var menuForm = menuFormColumn.find('#menuOptionDescriptions');
 					var subCount = parseInt(sub_menu.submenuCount);
 					var menus = sub_menu.submenus;
@@ -515,9 +515,9 @@ var simulatorJS = (function () {
                         var label_SubNameID_Element = 'submenuLabel_' + menuNum;
                         var input_SubNameID_Element = 'inputSubmenuName_' + menuNum;
 						
-						var menu = menus[count];
-						var menuObjectName = menu.name;
-						var menuObjectSubmenuCount = menu.submenuCount;
+						//var menu = menus[count];
+						//var menuObjectName = menu.name;
+						//var menuObjectSubmenuCount = menu.submenuCount;
 						
 						menuForm.append('<p>');
                         menuForm.append('<label class="submenuOption" id=' + label_SubNameID_Element + '>');
@@ -553,7 +553,7 @@ var simulatorJS = (function () {
 			
 			redrawMenu: function () {
 					
-					var menuFormColumn = $('#mainTable').find('#menuColumn');
+					var menuFormColumn = $('#mainContainer').find('#menuColumn');
                     var menuForm = menuFormColumn.find('#menuOptionDescriptions');
 					var menuNum = 0;
 					

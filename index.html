@@ -11,14 +11,11 @@
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 </head>
 <body>
-<div class="container" id="mainContainer">
 
-<table id="mainTable">
-<tbody>
-  <tr>
-    <td class="col-xs-6" id="simulatorColumn">
-    <div class="mainSimulatorContainer">
-    <textarea readonly class="simulatorTextArea" id="simulatorTextDisplay"></textarea>
+<div class="container-fluid" id="mainContainer">
+
+<div class="mainSimulatorContainer col-xs-6">
+<textarea readonly class="simulatorTextArea" id="simulatorTextDisplay"></textarea>
 <div id="numKeypad">
 
 <div id="firstKeypadRow">
@@ -50,16 +47,10 @@
 
 </div>
 
-</td>
-
-<td class="col-xs-6" id="menuColumn">
+<div class="col-xs-6" id="menuColumn">
 <form id="menuOptionDescriptions" onSubmit="return simulatorJS.submitMenusWithSubmenus()"> 
 </form>
-
-</td>
-</tr>
-</tbody>
-</table>
+</div>
 
 </div>
 <script>
