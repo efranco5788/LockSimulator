@@ -7,9 +7,8 @@
 }
 
 .mainSimulatorContainer{
-	
-	height:80%;
-	width:90%;
+	height:100%;
+	width:30%;
 	border-radius: 30%;
 	border-width:thin;
 	border-style:solid;
@@ -20,25 +19,26 @@
 	position: relative;
 	left: 10%;
 	height:100%;
-	width:50%;
+	width:30%;
 	padding-left: 5%;
 	padding-right: 5%;
 }
 
 #simulatorTextDisplay{
+	position: relative;
 	resize: none;
 	border-radius: 10%;
 	padding-left: 0;
-    padding-right: 0;
+	padding-right: 0;
 	margin-top: 2%;
-    margin-left: auto;
-    margin-right: auto;
-    display: block;
-	height: 20%;
-    width: 60%;
-	border-width:thin;
-	border-style:solid;
-	background-color:#a7b658;
+	margin-left: auto;
+	margin-right: auto;
+	display: block;
+	height: 5em;
+	width: 50%;
+	border-width: thin;
+	border-style: solid;
+	background-color: #a7b658;
 }
 
 #numKeypad{
